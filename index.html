@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Test Hosted APP</title>
+	<style>
+		body{
+			margin:  0;
+			padding: 16px;
+			color: #FFF;
+			background-color: black;
+		}
+		#titleBackButton{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<p>ほすてっど あぷり</p>
+	<button id="titleBackButton">ばっくだよー</button>
+
+	<script>
+	    if(typeof Windows !== undefined){
+	        var systemNavigationManager = Windows.UI.Core.SystemNavigationManager.getForCurrentView();
+
+	        function onBackRequested(eventArgs) {
+	            systemNavigationManager.appViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.collapsed;
+	        }
+	        systemNavigationManager.onbackrequested = onBackRequested;
+
+	        var backButton = document.querySelector("#titleBackButton");
+	        backButton.style.display = "block";
+	        backButton.addEventListener("click", function () {
+	            systemNavigationManager.appViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.visible;
+	        });
+	    }
+	</script>
+</body>
+</html>
