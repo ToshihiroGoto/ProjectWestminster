@@ -20,7 +20,7 @@
 	<button id="titleBackButton">タイトルバーに戻るボタンを出現させるやつ</button>
 
 	<script>
-	    if(typeof Windows !== undefined){
+	    if(typeof Windows !== "undefined"){
 			var backButton = document.querySelector("#titleBackButton");
 
 	        var systemNavigationManager = Windows.UI.Core.SystemNavigationManager.getForCurrentView();
