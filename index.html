@@ -17,21 +17,39 @@
 </head>
 <body>
 	<p>ほすてっど あぷり</p>
-	<button id="titleBackButton">ばっくだよー</button>
+	<button id="titleBackButton">タイトルバーに戻るボタンを出現させるやつ</button>
 
 	<script>
 	    if(typeof Windows !== undefined){
+			var backButton = document.querySelector("#titleBackButton");
+
 	        var systemNavigationManager = Windows.UI.Core.SystemNavigationManager.getForCurrentView();
+			//var backRequestedEventArgs = Windows.UI.Core.SystemNavigationManager.handled;
+			
+			var pageCount = 0;
 
 	        function onBackRequested(eventArgs) {
-	            systemNavigationManager.appViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.collapsed;
+	        	backButton.style.display = "block";
+
+	        	if(pageCount >= 1){
+					pageCount -= 1;
+
+					eventArgs.handled = true;
+
+		            systemNavigationManager.appViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.collapsed;	        		
+	        	}else{
+	        		eventArgs.handled = false;
+	        	}
 	        }
 	        systemNavigationManager.onbackrequested = onBackRequested;
 
-	        var backButton = document.querySelector("#titleBackButton");
 	        backButton.style.display = "block";
 	        backButton.addEventListener("click", function () {
 	            systemNavigationManager.appViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.visible;
+
+	            pageCount += 1;
+
+	   			this.style.display = "none";
 	        });
 	    }
 	</script>
